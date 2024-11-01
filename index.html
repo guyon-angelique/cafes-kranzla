@@ -1,5 +1,92 @@
 <!DOCTYPE html>
 <html>
-<h1>Test</h1>
-  <p>Ajout paragraphe</p>
+  <head>
+    <base target="_top">
+    <meta name = "viewport" content = "width=with-device, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="styles.css" />
+
+    <script src="api.js"></script>
+    <script>
+      window.onload = function() {
+
+        testget();
+      }
+
+    </script>
+  </head>
+  <body>
+    <section>
+
+      <h1>Cafés Kranzla<img src="cafe.png" /></h1>
+      <button id='bouton' onclick='postSaisie()'>test</button>
+
+      <main>
+
+      <div id='insertion'>
+         <p>Préparation du café en cours</p>
+      </div>
+
+      <div id='boiteProchainCafe'>
+        <div id='contenuBoiteProchainCafe'>
+          <p id="p1affichageProchainCafe">Prochain Café : </p>
+          <p id="affichageProchainCafe">Chargement</p>
+        </div>
+      </div>
+      </main>
+    </section>
+
+      <dialog id='boiteModale'>
+
+      </dialog>
+
+      <dialog id="chargement">
+        <p>Chargement en cours</p>
+      </dialog>
+
+  <script>
+
+  function testSaisie(i, jour, moisSelection, annee) {
+
+    document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+    var dialogChargement = document.getElementById('chargement');
+    dialogChargement.showModal();
+    var indexSaisie = "saisie"+i;
+    var saisieValue = document.getElementById(indexSaisie).value;
+
+    if(saisieValue=="") {
+      var idSaisieBis='saisieBis'+i;
+      document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'</p><form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class = "zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')" ><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()" ></div></form>';
+      document.querySelector("#chargement input").focus();
+    }else {
+      enregistrement(i, saisieValue);
+    //google.script.run.withSuccessHandler(verificationModif).verifModif(i,saisieValue);
+    console.log("ajout ok");
+    }
+  }
+  function testSaisieBis (i, jour, moisSelection, annee) {
+
+    var indexSaisie = "saisieBis"+i;
+    console.log(indexSaisie);
+    var saisieValue = document.getElementById(indexSaisie).value;
+    document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+    if(saisieValue=="") {
+      var idSaisieBis='saisieBis'+i;
+      document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'<form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class="zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')"><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()"> </div></form></td>';
+
+    }else {
+
+    enregistrement(i, saisieValue);
+    //google.script.run.withSuccessHandler(verificationModif).verifModif(i,saisieValue);
+    console.log("ajout ok");
+    }
+  }
+
+  function fermer() {
+    var fenetre=document.getElementById('chargement');
+    fenetre.close();
+  }
+
+  </script>
+  </body>
 </html>
+
