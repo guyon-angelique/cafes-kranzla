@@ -173,7 +173,7 @@ dialog::backdrop {
     height:50px;
     width : 48%;
     margin-right:0px;
-    padding:0;
+    padding : 0px;
   }
   .zoneBouton .boutonValider:focus {
     height:50px;
