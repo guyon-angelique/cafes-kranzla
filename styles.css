@@ -148,13 +148,23 @@ dialog::backdrop {
   padding-bottom:5px;
   padding-top:5px;
   }
+  .inscriptionPetitEcran:focus {
+    width:95%;
+  border-radius:20px;
+  background-color: #548235;
+  color: white;
+  border: none;
+  font-size: 1em;
+  padding-bottom:5px;
+  padding-top:5px;
+  }
   dialog {
     width:90%;
     font-size:2em;
   }
   .chargement input {
     font-size:40px;
-    margin-right:0px;
+    margin-right: 0px;
   }
   input:focus, textarea:focus {
     font-size:40px;
@@ -162,6 +172,10 @@ dialog::backdrop {
   .zoneBouton .boutonValider {
     height:50px;
     width : 48%;
+  }
+  .zoneBouton .boutonValider:focus {
+    height:50px;
+    width:48%
   }
   .zoneBouton {
     width:95%;
