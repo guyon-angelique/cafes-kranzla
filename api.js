@@ -1,5 +1,15 @@
 function testget() {
 
+  const isInWebAppiOS = (window.navigator.standalone === true);
+  if (isInWebAppiOS){
+    PullToRefresh.init({
+      mainElement: 'body',
+      onRefresh() {
+        window.location.reload();
+      }
+    });
+  }
+
   var url="https://script.google.com/macros/s/AKfycbxNmAu4vMmPyM5jPtp9QyDhRnCBX9dkS3Cc1mdwxrrA7lSlRhFx7wL6wTuX0Emh3fY/exec";
   
   fetch (url)
