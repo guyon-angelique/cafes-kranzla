@@ -154,6 +154,7 @@ dialog::backdrop {
   }
   .chargement input {
     font-size:40px;
+    margin-right:0px;
   }
   input:focus, textarea:focus {
     font-size:40px;
