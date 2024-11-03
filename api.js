@@ -107,12 +107,12 @@ function testget() {
   
   }
   
-  function postSaisie(i, saisieValue) {
+  async function postSaisie(i, saisieValue) {
     console.log('lancement script');
-    console.log("index envoyé "+i+" et saisie input "+saisieValue)
+    console.log("index envoyé "+i+" et saisie input "+saisieValue);
     var url="https://script.google.com/macros/s/AKfycbxNmAu4vMmPyM5jPtp9QyDhRnCBX9dkS3Cc1mdwxrrA7lSlRhFx7wL6wTuX0Emh3fY/exec";
   
-    fetch(url,{
+    await fetch(url,{
       method:'POST',
       mode:'no-cors',
       cache:'no-cache',
@@ -125,19 +125,22 @@ function testget() {
       body: JSON.stringify({index:i, saisie:saisieValue})
     });
   console.log("fin script");
-  var testurl = url+"?id="+i+"&saisie="+saisieValue;
+  console.log(saisieValue);
+  var encodageInput=encodeURIComponent(saisieValue);
+  var testurl = url+"?id="+i+"&saisie="+encodageInput;
   console.log(testurl);
-  fetch (testurl)
+  await fetch (testurl)
     .then(h=>h.json())
     .then(h=> {
       console.log("transfert url ok");
-      console.log(h);
+      console.log("retour"+h);
       if(h[0]=='ok') {
         console.log('modif ok');
         console.log(saisieValue);
         
         document.getElementById(i).innerHTML=saisieValue;
         fermer();
+        
       }
       else {
         var date = new Date(h[1]);
