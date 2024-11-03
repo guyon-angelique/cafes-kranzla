@@ -74,49 +74,6 @@
         <p>Chargement en cours</p>
       </dialog>
 
-  <script>
 
-  function testSaisie(i, jour, moisSelection, annee) {
-
-    document.getElementById('chargement').innerHTML='<p>Chargement</p>';
-    var dialogChargement = document.getElementById('chargement');
-    dialogChargement.showModal();
-    var indexSaisie = "saisie"+i;
-    var saisieValue = document.getElementById(indexSaisie).value;
-
-    if(saisieValue=="") {
-      var idSaisieBis='saisieBis'+i;
-      document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'</p><form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class = "zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')" ><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()" ></div></form>';
-      document.querySelector("#chargement input").focus();
-    }else {
-      enregistrement(i, saisieValue);
-    //google.script.run.withSuccessHandler(verificationModif).verifModif(i,saisieValue);
-    console.log("ajout ok");
-    }
-  }
-  function testSaisieBis (i, jour, moisSelection, annee) {
-
-    var indexSaisie = "saisieBis"+i;
-    console.log(indexSaisie);
-    var saisieValue = document.getElementById(indexSaisie).value;
-    document.getElementById('chargement').innerHTML='<p>Chargement</p>';
-    if(saisieValue=="") {
-      var idSaisieBis='saisieBis'+i;
-      document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'<form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class="zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')"><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()"> </div></form></td>';
-
-    }else {
-
-    enregistrement(i, saisieValue);
-    //google.script.run.withSuccessHandler(verificationModif).verifModif(i,saisieValue);
-    console.log("ajout ok");
-    }
-  }
-
-  function fermer() {
-    var fenetre=document.getElementById('chargement');
-    fenetre.close();
-  }
-
-  </script>
   </body>
 </html>
