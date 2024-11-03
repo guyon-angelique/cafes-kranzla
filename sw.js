@@ -7,6 +7,7 @@ self.addEventListener('install', (event) => {
           'styles.css',
           'app.js',
           'api.js',
+            'site.manifest',
         ]);
       })
     );
