@@ -2,7 +2,6 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
       caches.open('v1').then((cache) => {
         return cache.addAll([
-          '/',
           'index.html',
           'offline.html', // Page à afficher quand hors connexion
           'styles.css',
