@@ -73,30 +73,8 @@
       <dialog id="chargement">
         <p>Chargement en cours</p>
       </dialog>
-<script>
-  PullToRefresh.init({
-    mainElement: '.content', // Change ce sélecteur si nécessaire
-    onRefresh: async () => {
-        if (!navigator.onLine) {
-            const cachedData = loadFromCache();
-            updateUI(cachedData);
-            showOfflineMessage();
-            return;
-        }
 
-        try {
-            const response = await fetch('https://api.example.com/donnees'); // Remplace par l'URL de ton API
-            const data = await response.json();
-            updateUI(data);
-            saveToCache(data);
-        } catch (error) {
-            console.error('Erreur de récupération des données :', error);
-            showOfflineMessage();
-        }
-    }
-});
 
-</script>
   </body>
   
 </html>
