@@ -1,11 +1,12 @@
 self.addEventListener('install', (event) => {
     event.waitUntil(
-      caches.open('v2').then((cache) => {
+      caches.open('v4').then((cache) => {
         return cache.addAll([
           'offline.html', // Page à afficher quand hors connexion
           'app.js',
           'api.js',
-            'site.manifest',
+          'images/cafe.png',
+          'site.manifest'
         ]);
       })
     );

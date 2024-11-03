@@ -3,6 +3,9 @@ body {
   background-color:#c6e0b4;
   margin:0px;
 }
+img {
+  width:150px;
+}
 section {
   width:80%;
   margin: auto;
@@ -113,6 +116,9 @@ dialog::backdrop {
 }
 @media screen and (max-width: 1200px) {
 
+  img {
+    width:50px;
+  }
   h1 {
     font-size:2.3em;
   }
