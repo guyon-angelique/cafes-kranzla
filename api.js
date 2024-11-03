@@ -152,4 +152,70 @@ function testget() {
     })
   
   }
-  
+  PullToRefresh.init({
+    mainElement: 'body', // Change ce sélecteur si nécessaire
+    onRefresh: async () => {
+        if (!navigator.onLine) {
+            const cachedData = loadFromCache();
+            updateUI(cachedData);
+            return;
+        }
+
+        try {
+            const response = await fetch('https://cdnjs.cloudflare.com/ajax/libs/pulltorefreshjs/0.1.22/index.umd.js'); // Remplace par l'URL de ton API
+            const data = await response.json();
+            updateUI(data);
+            saveToCache(data);
+        } catch (error) {
+            console.error('Erreur de récupération des données :', error);
+        }
+    }
+});
+function loadFromCache() {
+    // Charger les données depuis le cache ou LocalStorage
+    const cachedData = localStorage.getItem('cachedData');
+    return cachedData ? JSON.parse(cachedData) : [];
+}
+
+function saveToCache(data) {
+    // Enregistrer les données dans le cache ou LocalStorage
+    localStorage.setItem('cachedData', JSON.stringify(data));
+}
+function fermer() {
+  var fenetre=document.getElementById('chargement');
+  fenetre.close();
+}
+function testSaisie(i, jour, moisSelection, annee) {
+
+  document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+  var dialogChargement = document.getElementById('chargement');
+  dialogChargement.showModal();
+  var indexSaisie = "saisie"+i;
+  var saisieValue = document.getElementById(indexSaisie).value;
+
+  if(saisieValue=="") {
+    var idSaisieBis='saisieBis'+i;
+    document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'</p><form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class = "zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')" ><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()" ></div></form>';
+    document.querySelector("#chargement input").focus();
+  }else {
+    enregistrement(i, saisieValue);
+  //google.script.run.withSuccessHandler(verificationModif).verifModif(i,saisieValue);
+  console.log("ajout ok");
+  }
+}
+function testSaisieBis (i, jour, moisSelection, annee) {
+
+  var indexSaisie = "saisieBis"+i;
+  console.log(indexSaisie);
+  var saisieValue = document.getElementById(indexSaisie).value;
+  document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+  if(saisieValue=="") {
+    var idSaisieBis='saisieBis'+i;
+    document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'<form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class="zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')"><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()"> </div></form></td>';
+
+  }else {
+
+  enregistrement(i, saisieValue);
+  console.log("ajout ok");
+  }
+}
