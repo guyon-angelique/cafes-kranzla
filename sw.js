@@ -6,7 +6,6 @@ self.addEventListener('install', (event) => {
           'app.js',
           'api.js',
           'images/cafe.png',
-          'pulltorefresh.js',
           'site.manifest'
         ]);
       })
