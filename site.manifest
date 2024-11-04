@@ -1,8 +1,8 @@
 {
     "short_name":"Cafés Kranzla",
     "name":"Cafés Kranzla",
-    "theme_color":"#ffffff",
-    "background_color":"#ffffff",
+    "theme_color":"#c6e0b4",
+    "background_color":"#c6e0b4",
     "display":"standalone",
     "Scope":"/",
     "serviceworker":"/",
