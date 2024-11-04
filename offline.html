@@ -30,5 +30,18 @@
         <p>La page n'est pas disponible hors connexion</p>
         <p><img src="images/cafe.png" /></p>
         </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                PullToRefresh.init({
+                    mainElement: 'body', // ou un autre élément que tu souhaites rafraîchir
+                    onRefresh: function () {
+                        // Logique pour rafraîchir le contenu, par exemple :
+                        window.location.reload();
+                    }
+                });
+            });
+        </script>
+        
     </body>
 </html>
