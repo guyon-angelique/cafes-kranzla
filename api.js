@@ -124,31 +124,31 @@ function testget() {
   
       body: JSON.stringify({index:i, saisie:saisieValue})
     });
-  console.log("fin script");
-  console.log(saisieValue);
-  var encodageInput=encodeURIComponent(saisieValue);
-  var testurl = url+"?id="+i+"&saisie="+encodageInput;
-  console.log(testurl);
-  await fetch (testurl)
-    .then(h=>h.json())
-    .then(h=> {
-      console.log("transfert url ok");
-      console.log("retour"+h);
-      if(h[0]=='ok') {
-        console.log('modif ok');
-        console.log(saisieValue);
+    console.log("fin script");
+    console.log(saisieValue);
+    var encodageInput=encodeURIComponent(saisieValue);
+    var testurl = url+"?id="+i+"&saisie="+encodageInput;
+    console.log(testurl);
+    await fetch (testurl)
+      .then(h=>h.json())
+      .then(h=> {
+        console.log("transfert url ok");
+        console.log("retour"+h);
+        if(h[0]=='ok') {
+          console.log('modif ok');
+          console.log(saisieValue);
         
-        document.getElementById(i).innerHTML=saisieValue;
-        fermer();
+          document.getElementById(i).innerHTML=saisieValue;
+          fermer();
         
-      }
-      else {
-        var date = new Date(h[1]);
-        var mois = date.getMonth()+1
-        console.log(date);
-        var dateErreurModif = date.getDate()+"/"+mois+"/"+date.getFullYear();
-        document.getElementById('chargement').innerHTML="<p>Désolé,</p><p>"+h[2]+" vient de s'inscrire pour le "+dateErreurModif+"</p><p><input type='button' class='boutonValider' value='OK' onclick='window.location.reload()'>";
-      }
+        }
+        else {
+          var date = new Date(h[1]);
+          var mois = date.getMonth()+1
+          console.log(date);
+          var dateErreurModif = date.getDate()+"/"+mois+"/"+date.getFullYear();
+          document.getElementById('chargement').innerHTML="<p>Désolé,</p><p>"+h[2]+" vient de s'inscrire pour le "+dateErreurModif+"</p><p><input type='button' class='boutonValider' value='OK' onclick='window.location.reload()'>";
+        }
     })
   
   }
@@ -159,7 +159,7 @@ function fermer() {
 }
 function testSaisie(i, jour, moisSelection, annee) {
 
-  document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+  document.getElementById('chargement').innerHTML='<p>Chargement</p><div class="cs-loader"><div class="cs-loader-inner"><label>●</label><label>●</label><label>●</label><label>●</label><label>●</label><label>●</label></div></div>';
   var dialogChargement = document.getElementById('chargement');
   dialogChargement.showModal();
   var indexSaisie = "saisie"+i;
@@ -180,7 +180,7 @@ function testSaisieBis (i, jour, moisSelection, annee) {
   var indexSaisie = "saisieBis"+i;
   console.log(indexSaisie);
   var saisieValue = document.getElementById(indexSaisie).value;
-  document.getElementById('chargement').innerHTML='<p>Chargement</p>';
+  document.getElementById('chargement').innerHTML='<p>Chargement</p><div class="cs-loader"><div class="cs-loader-inner"><label>●</label><label>●</label><label>●</label><label>●</label><label>●</label><label>●</label></div></div>';
   if(saisieValue=="") {
     var idSaisieBis='saisieBis'+i;
     document.getElementById('chargement').innerHTML='<p>Inscription pour le '+jour+'/'+moisSelection+'/'+annee+'<form id="formBis'+i+'" action="javascript:;" onsubmit="testSaisieBis('+i+')"><input class= "zoneSaisie" id="'+idSaisieBis+'" placeholder="S\'inscrire"><div class="zoneBouton"><input class= "boutonValider" type="button" value="Valider" onclick="testSaisieBis('+i+','+jour+','+moisSelection+','+annee+')"><input class= "boutonValider" type="button" value="Annuler" onclick="fermer()"> </div></form></td>';
