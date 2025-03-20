@@ -98,5 +98,16 @@
 
 
   </body>
+  <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                PullToRefresh.init({
+                    mainElement: 'body', // ou un autre élément que tu souhaites rafraîchir
+                    onRefresh: function () {
+                        // Logique pour rafraîchir le contenu, par exemple :
+                        window.location.reload();
+                    }
+                });
+            });
+        </script>
   
 </html>
